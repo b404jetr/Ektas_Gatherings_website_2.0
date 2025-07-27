@@ -1,5 +1,4 @@
-# Ektas_Gatherings_website_2.0
-# Ekta's Gatherings Website
+# Ekta's Gatherings Website 2.0
 
 This repository contains the complete **Ekta’s Gatherings** community platform website, designed with a modern neoPOP-inspired style. It includes separate sections for B2C members, B2B partners, and an admin panel with super admin authentication.
 
