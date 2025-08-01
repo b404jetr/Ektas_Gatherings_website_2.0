@@ -2,145 +2,147 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Ekta's Gatherings - neoPOP Edition</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+  <title>Ekta's Gatherings</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <!-- Navigation -->
   <nav class="neopop-navbar">
-    <div class="logo">Ekta's Gatherings</div>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#b2c">Community</a></li>
-      <li><a href="#b2b">Partners</a></li>
-      <li><a href="#admin">Admin</a></li>
+    <div class="logo" tabindex="0" aria-label="Ekta's Gatherings Home Link" role="link">Ekta's Gatherings</div>
+    <ul class="nav-links" role="menubar" aria-label="Primary navigation">
+      <li role="none"><a href="#home" role="menuitem" tabindex="0">Home</a></li>
+      <li role="none"><a href="#b2c" role="menuitem" tabindex="0">Community</a></li>
+      <li role="none"><a href="#b2b" role="menuitem" tabindex="0">Partners</a></li>
+      <li role="none"><a href="#admin" role="menuitem" tabindex="0">Admin</a></li>
     </ul>
   </nav>
-  <!-- Hero Section + Auth -->
-  <section id="home" class="np-section">
-    <div class="np-card hero-card">
-      <img src="logo_placeholder.png" class="logo-img" alt="Ekta's Gatherings Logo" />
-      <h1>Join Our Community</h1>
-      <div class="np-tagline">"People are strange, when you're a stranger"</div>
-      <p class="np-lead">Make new friends in the city!</p>
-      <!-- Replace the following div with your Youform.com embed code -->
-      <div class="np-card form-card np-form-placeholder">
-        <!-- Example Youform embed (swap 'abcd1234' with your real form id) -->
-        <!-- <iframe src="https://youform.com/f/abcd1234" width="100%" height="600" frameborder="0"></iframe> -->
-        <div class="np-form-embed">[Youform.com Lead Form Embed Here]</div>
-      </div>
-    </div>
-  </section>
-  <!-- B2C Section -->
-  <section id="b2c" class="np-section">
-    <div class="np-card section-card">
-      <h2>B2C: How It Works</h2>
-      <div class="np-steps-flex">
-        <div class="np-step-card"><span class="np-step-num">1</span>Fill the form & verify email/phone</div>
-        <div class="np-step-card"><span class="np-step-num">2</span>Get profile vetted for a membership invite</div>
-        <div class="np-step-card"><span class="np-step-num">3</span>Start getting event invites & exclusive benefits</div>
-      </div>
-      <!-- USP Tiles -->
-      <div class="np-tiles-flex">
-        <div class="np-tile">City Wide Reach</div>
-        <div class="np-tile">Exclusive Member Benefits</div>
-        <div class="np-tile">Welcoming Community</div>
-        <div class="np-tile">Unparalleled Networking Opportunities</div>
-        <div class="np-tile">Activity-based Networking</div>
-        <div class="np-tile">Co-Hosted by Founder</div>
-      </div>
-      <!-- Stats -->
-      <div class="np-stats-flex">
-        <div class="np-stat-card"><span>2000+</span><small>Members</small></div>
-        <div class="np-stat-card"><span>1000+</span><small>Events</small></div>
-        <div class="np-stat-card"><span>5+</span><small>Cities</small></div>
-      </div>
-      <div class="np-card np-events-list">
-        <b>Our Events:</b>
-        <ul>
-          <li>Open Tables</li>
-          <li>Poetry Open Mic</li>
-          <li>Book Reading</li>
-          <li>City Tours</li>
-          <li>Heritage Shop Tours</li>
-          <li>Museum Tours</li>
-          <li>Live Music Shows</li>
-        </ul>
-      </div>
-      <div class="np-card gallery-placeholder">[Gallery Placeholder—Upload your images/videos via Admin Panel]</div>
-      <div class="np-card testimonial-placeholder">[Testimonial Placeholder—Upload your testimonials via Admin Panel]</div>
-      <div class="np-card faq-placeholder">[FAQs—Manage or upload in Admin Panel]</div>
-    </div>
-  </section>
-  <!-- B2B Section -->
-  <section id="b2b" class="np-section">
-    <div class="np-card section-card">
-      <h2>Partner With Us (B2B)</h2>
-      <div class="np-flex-side">
-        <div class="np-b2b-card">
-          <h3>Venues</h3>
-          <p>Host EG Events at Your Venue: Digitize your community & boost footfall. Use the special EG Member's Menu!<br/></p>
-          <div class="np-card np-form-placeholder">
-            <div class="np-form-embed">[Youform.com Venue Partner Form Embed Here]</div>
-          </div>
+
+  <!-- Home / Hero + Authentication prompt -->
+  <main>
+    <section id="home" class="np-section" tabindex="-1" aria-label="Hero and Introduction">
+      <article class="np-card hero-card">
+        <img src="logo-placeholder.png" alt="Ekta's Gatherings Logo" class="logo-img" />
+        <h1 id="hero-title">Loading...</h1>
+        <p class="np-tagline" id="hero-tagline">Loading tagline...</p>
+        <p class="np-lead" id="hero-subtitle">Loading subtitle...</p>
+
+        <div id="youform-b2c-embed" class="np-card np-form-placeholder" aria-live="polite" aria-label="Community lead signup form">
+          <!-- Youform embed goes here dynamically -->
         </div>
-        <div class="np-b2b-card">
-          <h3>Service Providers</h3>
-          <p>Partner with EG: Offer your services, co-curate events, or showcase talent. Grow your business!</p>
-          <div class="np-card np-form-placeholder">
-            <div class="np-form-embed">[Youform.com Service Provider Form Embed Here]</div>
-          </div>
+      </article>
+    </section>
+
+    <!-- B2C Section -->
+    <section id="b2c" class="np-section" tabindex="-1" aria-label="B2C Community section">
+      <article class="np-card section-card">
+        <h2>How to Join Ekta's Gatherings</h2>
+        <div class="np-steps-flex" aria-label="3 step joining process">
+          <!-- Steps will be dynamically loaded -->
         </div>
-      </div>
-      <!-- B2B Details -->
-      <div class="np-benefit-tiles">
-        <div class="np-tile">End-to-End Event Operations</div>
-        <div class="np-tile">Member's Menu & Upsells</div>
-        <div class="np-tile">Minimum Bookings Guarantee</div>
-        <div class="np-tile">Marketing Support</div>
-        <div class="np-tile">Community Building</div>
-        <div class="np-tile">Brand Exposure</div>
-        <div class="np-tile">Risk Reduction</div>
-        <div class="np-tile">Recurring Revenue</div>
-      </div>
-      <div class="np-card service-modules-list">
-        <b>Our Service Modules:</b>
-        <ul>
-          <li>Open Stage Events</li>
-          <li>Book Reading Sessions</li>
-          <li>Live Music Events</li>
-          <li>Live Poetry Nights</li>
-          <li>City Tours</li>
-          <li>[Add More via Admin]</li>
-        </ul>
-      </div>
-      <div class="np-card success-story-placeholder">[Success Stories Placeholder—Upload via Admin Panel]</div>
-    </div>
-  </section>
-  <!-- Admin Login/Panel -->
-  <section id="admin" class="np-section">
-    <div class="np-card admin-card" id="admin-login-section">
-      <h2>Super Admin Login</h2>
-      <form id="admin-login-form" autocomplete="off">
-        <input type="text" id="admin-username" placeholder="Username" required />
-        <input type="password" id="admin-password" placeholder="Password" required />
-        <button type="submit" class="btn-primary">Login</button>
-        <div id="admin-login-msg"></div>
-      </form>
-    </div>
-    <div class="np-card admin-panel-card" id="admin-panel-section" style="display:none;">
-      <h2>Admin Panel</h2>
-      <div>[Here you can manage gallery, testimonials, FAQs, and service modules. (Feature placeholder—customize as needed!)]</div>
-      <button onclick="handleLogout()" class="btn-primary" style="background:#222;">Logout</button>
-    </div>
-  </section>
+
+        <div class="np-tiles-flex" aria-label="Reasons to join Ekta's Gatherings">
+          <!-- USPs loaded dynamically -->
+        </div>
+
+        <div class="np-stats-flex" aria-label="Community statistics">
+          <!-- Stats dynamically loaded -->
+        </div>
+
+        <div class="np-card np-events-list" aria-label="Event types">
+          <b>Our Events:</b>
+          <ul id="b2c-events-list">
+            <!-- Event types rendered here -->
+          </ul>
+        </div>
+
+        <div class="np-card gallery-placeholder" aria-label="Event gallery placeholder">
+          [Gallery Placeholder – Upload your images/videos via Admin Panel]
+        </div>
+
+        <div class="np-card testimonial-placeholder" aria-label="Member testimonials placeholder">
+          [Testimonials Placeholder – Upload your testimonials via Admin Panel]
+        </div>
+
+        <div class="np-card faq-placeholder" aria-label="Frequently Asked Questions placeholder">
+          [FAQs Placeholder – Manage or upload in Admin Panel]
+        </div>
+      </article>
+    </section>
+
+    <!-- B2B Section -->
+    <section id="b2b" class="np-section" tabindex="-1" aria-label="B2B Partners section">
+      <article class="np-card section-card">
+        <h2>Partner With Ekta's Gatherings</h2>
+
+        <div class="np-flex-side" role="region" aria-label="Venue and Service Provider forms">
+          <section class="np-b2b-card" aria-label="Venue partner sign-up">
+            <h3>Venues</h3>
+            <p>Host EG Events at Your Venue to digitize your community & boost footfall via the special EG Member's Menu.</p>
+            <div id="youform-venue-embed" class="np-card np-form-placeholder" aria-live="polite">
+              <!-- Youform Venue embed -->
+            </div>
+          </section>
+
+          <section class="np-b2b-card" aria-label="Service Provider partner sign-up">
+            <h3>Service Providers</h3>
+            <p>Partner with EG to offer your services and grow your business by collaborating on unique programs.</p>
+            <div id="youform-provider-embed" class="np-card np-form-placeholder" aria-live="polite">
+              <!-- Youform Service Provider embed -->
+            </div>
+          </section>
+        </div>
+
+        <div class="np-benefit-tiles" aria-label="Partner benefits">
+          <!-- Benefits loaded dynamically -->
+        </div>
+
+        <div class="np-card service-modules-list" aria-label="B2B Service modules">
+          <b>Our Service Modules:</b>
+          <ul id="b2b-service-modules-list">
+            <!-- Service modules loaded dynamically -->
+          </ul>
+          <p><em>Additional services available. Pricing & packages are based on discussion.</em></p>
+        </div>
+
+        <div class="np-card success-story-placeholder" aria-label="Success stories placeholder">
+          [Success Stories Placeholder – Upload via Admin Panel]
+        </div>
+      </article>
+    </section>
+
+    <!-- Admin Section -->
+    <section id="admin" class="np-section" tabindex="-1" aria-label="Super Admin login and dashboard section">
+      <article class="np-card admin-card" id="admin-login-section">
+        <h2>Super Admin Login</h2>
+        <form id="admin-login-form" autocomplete="off" aria-describedby="admin-login-msg" novalidate>
+          <label for="admin-username" class="sr-only">Username</label>
+          <input type="text" id="admin-username" name="username" placeholder="Username" required aria-required="true" autocomplete="username" />
+          
+          <label for="admin-password" class="sr-only">Password</label>
+          <input type="password" id="admin-password" name="password" placeholder="Password" required aria-required="true" autocomplete="current-password" />
+
+          <button type="submit" class="btn-primary">Login</button>
+          <div id="admin-login-msg" role="alert" aria-live="polite" class="login-msg"></div>
+        </form>
+      </article>
+
+      <article class="np-card admin-panel-card" id="admin-panel-section" style="display:none;" aria-live="polite" aria-label="Admin Dashboard">
+        <h2>Admin Panel</h2>
+        <p>Content & media management coming soon.</p>
+        <button id="admin-logout-btn" class="btn-primary" type="button">Logout</button>
+      </article>
+    </section>
+  </main>
+
   <!-- Footer -->
-  <footer class="np-footer">
-    <div class="footer-content"><span>Ekta's Gatherings &copy; 2025</span></div>
+  <footer class="np-footer" role="contentinfo">
+    <div class="footer-content">
+      <span>© 2025 Ekta's Gatherings. All rights reserved.</span>
+    </div>
   </footer>
-  <script src="script.js"></script>
+
+  <script src="app.js"></script>
 </body>
 </html>
