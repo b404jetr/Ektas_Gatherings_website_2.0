@@ -1,375 +1,202 @@
-:root {
-  --np-bg-dark: #18181a;
-  --np-card-bg: #232328;
-  --np-border: #FFD700;
-  --np-text: #fff;
-  --np-accent: #FFD700;
-  --np-radius: 20px;
-  --np-shadow: 0 8px 32px rgba(24,24,26,0.15);
-  --np-btn-bg: #FFD700;
-  --np-btn-text: #18181a;
-  --np-footer-bg: #101010;
-  --np-font-family: 'Montserrat', Arial, sans-serif;
+// Store config data here after fetch
+let ektaConfig = null;
+
+// Elements references
+const heroTitleEl = document.getElementById('hero-title');
+const heroTaglineEl = document.getElementById('hero-tagline');
+const heroSubtitleEl = document.getElementById('hero-subtitle');
+
+const stepsContainer = document.querySelector('.np-steps-flex');
+const uspsContainer = document.querySelector('.np-tiles-flex');
+const statsContainer = document.querySelector('.np-stats-flex');
+const b2cEventsList = document.getElementById('b2c-events-list');
+
+const b2bBenefitsContainer = document.querySelector('.np-benefit-tiles');
+const b2bServiceModulesList = document.getElementById('b2b-service-modules-list');
+
+const youformB2CContainer = document.getElementById('youform-b2c-embed');
+const youformVenueContainer = document.getElementById('youform-venue-embed');
+const youformProviderContainer = document.getElementById('youform-provider-embed');
+
+const adminLoginSection = document.getElementById('admin-login-section');
+const adminPanelSection = document.getElementById('admin-panel-section');
+const adminLoginForm = document.getElementById('admin-login-form');
+const adminLogoutBtn = document.getElementById('admin-logout-btn');
+const adminLoginMsg = document.getElementById('admin-login-msg');
+
+// Helper: Render an array of strings as tiles
+function renderTiles(container, items) {
+  container.innerHTML = "";
+  items.forEach(text => {
+    const div = document.createElement('div');
+    div.className = 'np-tile';
+    div.textContent = text;
+    container.appendChild(div);
+  });
 }
 
-body {
-  margin: 0;
-  background: var(--np-bg-dark);
-  color: var(--np-text);
-  font-family: var(--np-font-family);
-  min-height: 100vh;
-  scroll-behavior: smooth;
-}
-a {
-  color: var(--np-accent);
-  text-decoration: none;
-}
-a:hover,
-a:focus {
-  text-decoration: underline;
-  outline: none;
+// Helper: Render steps with number and text
+function renderSteps(container, steps) {
+  container.innerHTML = "";
+  steps.forEach((stepText, i) => {
+    const card = document.createElement('div');
+    card.className = 'np-step-card';
+    card.tabIndex = 0;
+    card.innerHTML = `<span class="np-step-num">${i + 1}</span>${stepText}`;
+    container.appendChild(card);
+  });
 }
 
-.neopop-navbar {
-  background: var(--np-bg-dark);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.25rem 2rem;
-  border-bottom: 4px solid var(--np-border);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-.neopop-navbar .logo {
-  font-size: 1.7rem;
-  font-weight: 900;
-  letter-spacing: 2px;
-  cursor: pointer;
-}
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 2rem;
-  margin: 0;
-  padding: 0;
-}
-.nav-links li {
-  font-weight: 700;
-}
-.nav-links a {
-  font-size: 1rem;
-  padding: 0.4rem 0.6rem;
-  border-radius: 8px;
-  transition: background-color 0.25s;
-}
-.nav-links a:hover,
-.nav-links a:focus {
-  background-color: rgba(255, 215, 0, 0.2);
-  outline: none;
-}
-
-/* Section styles */
-.np-section {
-  padding: 2.5rem 1.5rem 4rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  scroll-margin-top: 70px; /* For anchor navigation offset */
-}
-
-/* Card base style */
-.np-card, .card, .usp-tile, .benefit-tile, .event-type, .admin-panel, .admin-card {
-  background: var(--np-card-bg);
-  border: 2px solid var(--np-border);
-  border-radius: var(--np-radius);
-  box-shadow: var(--np-shadow);
-  color: var(--np-text);
-  margin-bottom: 2rem;
-  padding: 2rem;
-}
-
-/* Hero Section */
-.hero-card {
-  max-width: 700px;
-  margin: 2rem auto;
-  text-align: center;
-}
-.logo-img {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 1rem;
-  object-fit: contain;
-}
-.hero-card h1 {
-  font-weight: 900;
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-}
-.np-tagline {
-  font-size: 1.4rem;
-  font-style: italic;
-  margin-bottom: 0.5rem;
-  color: var(--np-text);
-}
-.np-lead {
-  color: var(--np-accent);
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;
-}
-
-/* Placeholder Youform container */
-.np-form-placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 220px;
-  background: rgba(32, 32, 36, 0.77);
-  border: 2px dashed var(--np-border);
-  color: var(--np-accent);
-  font-weight: 700;
-  font-size: 1.15rem;
-  border-radius: var(--np-radius);
-}
-.np-form-embed {
-  width: 100%;
-  height: 100%;
-}
-
-/* Steps */
-.np-steps-flex {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 2.5rem 0;
-}
-.np-step-card {
-  flex: 1 1 200px;
-  min-width: 180px;
-  background: var(--np-card-bg);
-  border: 2px solid var(--np-accent);
-  border-radius: var(--np-radius);
-  padding: 1.25rem;
-  margin-bottom: 1rem;
-  text-align: center;
-  font-weight: 700;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform 0.3s ease;
-  cursor: default;
-}
-.np-step-card:hover,
-.np-step-card:focus-within {
-  transform: translateY(-5px);
-  border-color: #ffdc82;
-  box-shadow: 0 12px 36px rgba(255, 215, 0, 0.25);
-}
-.np-step-num {
-  font-size: 2rem;
-  background: var(--np-accent);
-  color: var(--np-btn-text);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0.6rem;
-  user-select: none;
-}
-
-/* USP and benefits tiles */
-.np-tiles-flex, .np-benefit-tiles {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.5rem;
-  justify-content: center;
-}
-.np-tile {
-  background: var(--np-bg-dark);
-  border: 2px solid var(--np-accent);
-  border-radius: var(--np-radius);
-  padding: 1rem 1.6rem;
-  font-weight: 700;
-  box-shadow: var(--np-shadow);
-  font-size: 1.07rem;
-  user-select: none;
-  cursor: default;
-  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.18s ease;
-}
-.np-tile:hover,
-.np-tile:focus {
-  border-color: #ffdc82;
-  box-shadow: 0 12px 36px rgba(255, 215, 0, 0.25);
-  transform: scale(1.04);
-  outline: none;
-}
-
-/* Stats */
-.np-stat-card {
-  background: var(--np-bg-dark);
-  border: 2px solid var(--np-border);
-  border-radius: var(--np-radius);
-  text-align: center;
-  padding: 1.2rem 2rem;
-  min-width: 100px;
-  user-select: none;
-}
-.np-stat-card span {
-  display: block;
-  font-size: 2.4rem;
-  color: var(--np-accent);
-  font-weight: 900;
-}
-.np-stats-flex {
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-  margin: 2rem 0 1rem 0;
-}
-
-/* Event list styling */
-.np-events-list ul,
-.np-service-modules-list ul {
-  padding-left: 1.2em;
-  margin-top: 0.25em;
-}
-.np-events-list li,
-.np-service-modules-list li {
-  margin-bottom: 0.3em;
-  font-weight: 600;
-}
-
-/* Layout Helpers */
-.np-flex-side {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  margin: 3rem 0 1.7rem;
-}
-.np-b2b-card {
-  flex: 1;
-  min-width: 290px;
-  background: var(--np-bg-dark);
-  border: 2px solid var(--np-border);
-  padding: 2rem;
-  border-radius: var(--np-radius);
-  color: var(--np-text);
-}
-
-/* Admin Panel */
-.admin-card {
-  max-width: 400px;
-  margin: 3rem auto;
-  text-align: center;
-}
-.admin-panel-card {
-  max-width: 700px;
-  margin: 2rem auto;
-  background: #151517;
-  color: var(--np-accent);
-}
-.login-msg {
-  margin-top: 0.75rem;
-  min-height: 1.3rem;
-  font-weight: 700;
-  font-size: 0.9rem;
-  user-select: none;
-}
-
-/* Buttons */
-button.btn-primary {
-  background: var(--np-btn-bg);
-  color: var(--np-btn-text);
-  border-radius: var(--np-radius);
-  font-weight: 700;
-  border: none;
-  padding: 0.85rem 1.9rem;
-  font-size: 1.15rem;
-  cursor: pointer;
-  box-shadow: 0 4px 24px rgba(255, 215, 0, 0.15);
-  transition: box-shadow 0.2s ease, transform 0.15s ease;
-  user-select: none;
-}
-button.btn-primary:hover,
-button.btn-primary:focus {
-  background: var(--np-accent);
-  color: #000;
-  box-shadow: 0 8px 32px rgba(255, 215, 0, 0.25);
-  transform: translateY(-2px) scale(1.04);
-  outline: none;
-}
-
-/* Inputs */
-input[type="text"],
-input[type="password"],
-input[type="email"] {
-  background: var(--np-bg-dark);
-  color: var(--np-text);
-  border: 2px solid var(--np-accent);
-  border-radius: var(--np-radius);
-  padding: 1rem;
-  margin-bottom: 1.2rem;
-  font-size: 1rem;
-  width: 90%;
-}
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="email"]:focus {
-  outline: none;
-  border-color: #ffdc82;
-  box-shadow: 0 0 0 3px #ffdc82aa;
-}
-
-/* Accessibility Helper */
-.sr-only {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
-}
-
-/* Footer */
-.np-footer {
-  background: var(--np-footer-bg);
-  color: var(--np-accent);
-  text-align: center;
-  padding: 1.5rem 1rem;
-  border-top: 4px solid var(--np-border);
-  user-select: none;
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .neopop-navbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .np-steps-flex, .np-tiles-flex, .np-benefit-tiles, .np-stats-flex, .np-flex-side {
-    flex-direction: column !important;
-    align-items: stretch;
-    gap: 1.3rem;
+// Helper: Render stats cards
+function renderStats(container, statsObj) {
+  container.innerHTML = "";
+  for (const [label, value] of Object.entries(statsObj)) {
+    const card = document.createElement('div');
+    card.className = 'np-stat-card';
+    card.innerHTML = `<span>${value}</span><small>${label}</small>`;
+    container.appendChild(card);
   }
 }
-@media (max-width: 480px) {
-  .np-section {
-    padding: 1.5rem 1rem 3rem;
+
+// Fill event types list
+function renderEventList(container, events) {
+  container.innerHTML = "";
+  events.forEach(evt => {
+    const li = document.createElement('li');
+    li.textContent = evt;
+    container.appendChild(li);
+  });
+}
+
+// Setup Youform embed area - adding iframe dynamically with fallback message
+function embedYouform(container, embedUrl) {
+  container.innerHTML = "";
+  if (!embedUrl) {
+    container.textContent = "[Youform embed not configured]";
+    return;
   }
-  .hero-card h1 {
-    font-size: 2.4rem;
-  }
-  input[type="text"], input[type="password"], input[type="email"] {
-    width: 100%;
-  }
-  button.btn-primary {
-    width: 100%;
+  const iframe = document.createElement('iframe');
+  iframe.src = embedUrl;
+  iframe.width = '100%';
+  iframe.height = '480';
+  iframe.style.border = 'none';
+  iframe.setAttribute('title', 'Lead capture form');
+  iframe.setAttribute('aria-label', 'Lead signup form');
+  container.appendChild(iframe);
+}
+
+// Load config.json and init page content
+async function loadConfig() {
+  try {
+    const res = await fetch('config.json');
+    ektaConfig = await res.json();
+
+    // Hero texts
+    heroTitleEl.textContent = ektaConfig.heroCTA || "Join Our Community";
+    heroTaglineEl.textContent = ektaConfig.heroTagline || '"People are strange, when you\'re a stranger"';
+    heroSubtitleEl.textContent = ektaConfig.heroSubtitle || "Make new friends in the city!";
+
+    // B2C Steps, USPs, Stats
+    renderSteps(stepsContainer, ektaConfig.b2cSteps || []);
+    renderTiles(uspsContainer, ektaConfig.b2cUSPs || []);
+    renderStats(statsContainer, ektaConfig.b2cStats || {});
+    renderEventList(b2cEventsList, ektaConfig.b2cEvents || []);
+
+    // B2B Benefits and Service Modules
+    renderTiles(b2bBenefitsContainer, ektaConfig.b2bBenefits || []);
+    renderEventList(b2bServiceModulesList, ektaConfig.b2bServiceModules || []);
+
+    // Insert Youform embeds
+    embedYouform(youformB2CContainer, ektaConfig.youformB2C);
+    embedYouform(youformVenueContainer, ektaConfig.youformVenue);
+    embedYouform(youformProviderContainer, ektaConfig.youformProvider);
+  } catch (err) {
+    console.error("Error loading config.json:", err);
+    heroTitleEl.textContent = "Error loading site configuration";
   }
 }
+
+// Handle simple SPA-like hash navigation and focus management
+function setupNav() {
+  function navigate() {
+    const hash = location.hash ? location.hash.substring(1) : 'home';
+    const allSections = document.querySelectorAll('main > section');
+    allSections.forEach(sec => {
+      if (sec.id === hash) {
+        sec.style.display = 'block';
+        sec.focus();
+      } else {
+        sec.style.display = 'none';
+      }
+    });
+
+    // Focus top nav link
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+      if (link.getAttribute('href') === `#${hash}`) {
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  window.addEventListener('hashchange', navigate, false);
+  navigate(); // Initial
+}
+
+// Admin login & logout management
+function setupAdminAuth() {
+  // Try session restore
+  if (localStorage.getItem('eg_admin') === 'true') {
+    showAdminPanel(true);
+  }
+
+  adminLoginForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const username = e.target.username.value.trim();
+    const password = e.target.password.value;
+
+    if (username === "EktaOG" && password === "EktaOG@123") {
+      localStorage.setItem('eg_admin', 'true');
+      adminLoginMsg.textContent = "";
+      showAdminPanel(true);
+    } else {
+      adminLoginMsg.textContent = "Invalid username or password!";
+      adminLoginMsg.style.color = "#FFD700";
+    }
+  });
+
+  adminLogoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('eg_admin');
+    showAdminPanel(false);
+  });
+}
+
+// Show/hide admin UI parts
+function showAdminPanel(isLoggedIn) {
+  if (isLoggedIn) {
+    adminLoginSection.style.display = 'none';
+    adminPanelSection.style.display = 'block';
+  } else {
+    adminLoginSection.style.display = 'block';
+    adminPanelSection.style.display = 'none';
+  }
+}
+
+// Accessibility: Ensure keyboard focus for skip link & nav
+function setupAccessibility() {
+  // Shortcut: Logo click returns to home
+  document.querySelector('.neopop-navbar .logo').addEventListener('click', () => {
+    location.hash = 'home';
+  });
+}
+
+async function init() {
+  await loadConfig();
+  setupNav();
+  setupAdminAuth();
+  setupAccessibility();
+}
+
+document.addEventListener('DOMContentLoaded', init);
