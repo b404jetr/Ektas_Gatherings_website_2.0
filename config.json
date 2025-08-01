@@ -1,0 +1,52 @@
+{
+  "heroCTA": "Join Our Community",
+  "heroTagline": "\"People are strange, when you're a stranger\"",
+  "heroSubtitle": "Make new friends in the city!",
+  "b2cSteps": [
+    "Fill the form & verify email/phone",
+    "Get profile vetted for a membership invite",
+    "Start getting event invites & exclusive benefits"
+  ],
+  "b2cUSPs": [
+    "City Wide Reach",
+    "Exclusive Member Benefits",
+    "Welcoming Community",
+    "Unparalleled Networking Opportunities",
+    "Activity-based Networking",
+    "Exclusive Events Co-Hosted by Founder"
+  ],
+  "b2cStats": {
+    "Members": "2000+ (200+ VIP)",
+    "Events Hosted": "1000+",
+    "Cities Active": "5+"
+  },
+  "b2cEvents": [
+    "Open Tables",
+    "Poetry Open Mic",
+    "Book Reading",
+    "City Tours",
+    "Heritage Shop Tours",
+    "Museum Tours",
+    "Live Music Shows"
+  ],
+  "youformB2C": "https://youform.com/f/embed/B2C_FORM_EMBED_ID",
+  "youformVenue": "https://youform.com/f/embed/VENUE_FORM_EMBED_ID",
+  "youformProvider": "https://youform.com/f/embed/PROVIDER_FORM_EMBED_ID",
+  "b2bBenefits": [
+    "End-to-End Event Operations",
+    "Member's Menu & Upsells",
+    "Minimum Bookings Guarantee",
+    "Marketing Support",
+    "Community Building",
+    "Brand Exposure",
+    "Risk Reduction",
+    "Recurring Revenue"
+  ],
+  "b2bServiceModules": [
+    "Open Stage Events",
+    "Book Reading Sessions",
+    "Live Music Events",
+    "Live Poetry Nights",
+    "City Tours"
+  ]
+}
